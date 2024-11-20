@@ -1,0 +1,38 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "editor.formatOnSave": true,
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.dependency.syncWithFolderExplorer": true,
+    "spring-boot.ls.java.home": "C:/Program Files/Eclipse Adoptium/jdk-17.0.13.11-hotspot",
+    "java.jdt.ls.java.home": "C:/Program Files/Eclipse Adoptium/jdk-17.0.13.11-hotspot",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/target": false,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.completion.favoriteStaticMembers": [
+        "org.junit.Assert.*",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.assertj.core.api.Assertions.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*",
+        "org.mockito.Answers.*"
+    ],
+    "java.test.config": {
+        "vmArgs": [
+            "-Dspring.profiles.active=test"
+        ]
+    },
+    "spring-boot.ls.trace.server": "verbose",
+    "java.debug.settings.onBuildFailureProceed": true
+}

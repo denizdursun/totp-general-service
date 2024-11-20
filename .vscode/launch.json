@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TotpGeneralServiceApplication",
+            "request": "launch",
+            "mainClass": "com.example.totp_general_service.TotpGeneralServiceApplication",
+            "projectName": "totp-general-service"
+        },
+        {
+            "type": "java",
+            "name": "TotpGeneralServiceApplication",
+            "request": "launch",
+            "mainClass": "com.example.totp_general_service.TotpGeneralServiceApplication",
+            "projectName": "totp_general_service",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Dspring.boot.project.name=totp_general_service"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000
+        }
+    ]
+}
