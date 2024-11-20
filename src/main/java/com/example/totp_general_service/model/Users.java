@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "service_user")
+@Table(name = "users")
 @Data
-public class ServiceUser {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,9 +15,5 @@ public class ServiceUser {
     private String username;
 
     @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String role; // ADMIN, USER gibi roller
+    private String secretKey;
 }
-

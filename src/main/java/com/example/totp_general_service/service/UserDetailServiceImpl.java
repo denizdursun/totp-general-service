@@ -1,3 +1,9 @@
+/*
+Spring Security'de kullanıcı kimlik doğrulama sürecini yönetir.
+ServiceUserRepository üzerinden kullanıcı bilgilerini sorgular.
+Bulunan kullanıcıdan username, password ve role bilgilerini alır.
+Spring Security'nin User.builder() methodunu kullanarak UserDetails nesnesi oluşturur
+ */
 package com.example.totp_general_service.service;
 
 import com.example.totp_general_service.model.ServiceUser;
@@ -10,19 +16,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
-
-    private final ServiceUserRepository userRepository;
+    private final ServiceUserRepository serviceUserRepository;
 
     public UserDetailServiceImpl(ServiceUserRepository userRepository) {
-        this.userRepository = userRepository;
+        this.serviceUserRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ServiceUser user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-        return User.withUsername(user.getUsername()).password(user.getPassword())
-                .roles(user.getRole()).build();
+        ServiceUser user = serviceUserRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Kullanıcı bulunamadı: " + username));
+
+        // Rol isimleri otomatik olarak "ROLE_" prefix'i alacak
+        return User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .build();
     }
 }
-

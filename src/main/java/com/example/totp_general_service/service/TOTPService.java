@@ -1,6 +1,19 @@
+/*
+Bu sınıf, İki Faktörlü Kimlik Doğrulama (TOTP) için kullanılır.
+
+Gizli Anahtar Oluşturma
+
+Kullanıcı için benzersiz TOTP anahtarı üretir
+Eğer kullanıcı zaten varsa, mevcut anahtarı döndürür
+
+Kod Doğrulama
+
+Kullanıcının girdiği kodu doğrular
+Google Authenticator kütüphanesi kullanır
+ */
 package com.example.totp_general_service.service;
 
-import com.example.totp_general_service.model.User;
+import com.example.totp_general_service.model.Users;
 import com.example.totp_general_service.repository.UserRepository;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
@@ -18,13 +31,13 @@ public class TOTPService {
     }
 
     public String generateSecretKey(String username) {
-        Optional<User> existingUser = userRepository.findByUsername(username);
+        Optional<Users> existingUser = userRepository.findByUsername(username);
         if (existingUser.isPresent()) {
             return existingUser.get().getSecretKey();
         }
 
         GoogleAuthenticatorKey key = gAuth.createCredentials();
-        User user = new User();
+        Users user = new Users();
         user.setUsername(username);
         user.setSecretKey(key.getKey());
         userRepository.save(user);
@@ -33,7 +46,7 @@ public class TOTPService {
     }
 
     public boolean validateCode(String username, int code) {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Users> user = userRepository.findByUsername(username);
         return user.map(value -> gAuth.authorize(value.getSecretKey(), code)).orElse(false);
     }
 }
